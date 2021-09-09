@@ -1,33 +1,34 @@
-rouille::rouille! {
-    externe cagette rouille;
+alman::alman! {
+    extern cagette rouille;
 
-    utilisons std::collections::Dictionnaire comme Dico;
+    benutze std::collections::Wörterbuch;
 
-    interface CléValeur {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine);
-        fonction lire(&soi, clé: Chaine) -> PeutÊtre<&Chaine>;
+    eigenschaft SchlüsselWert {
+        funktion schreib(&selbst, schlüssel: Zeichenkette, wert: Zeichenkette);
+        funktion lies(&selbst, schlüssel: Zeichenkette) -> Ergebnis<&Zeichenkette>;
     }
 
-    statique mutable DICTIONNAIRE: PeutÊtre<Dico<Chaine, Chaine>> = Rien;
+    statisch wandelbar WÖRTERBUCH: Vielleicht<Wörterbuch<Zeichenkette, Zeichenkette>> = Nichts;
 
-    structure Concrète;
+    struktur Beton;
 
-    implémentation CléValeur pour Concrète {
-        fonction écrire(&soi, clé: Chaine, valeur: Chaine) {
-            soit dico = dangereux {
-                DICTIONNAIRE.prendre_ou_insérer_avec(Défault::défault)
+    implementierung SchlüsselWert für Beton {
+        funktion schreib(&selbst, schlüssel: Zeichenkette, wert: Zeichenkette) {
+            lass buch = unsicher {
+                WÖRTERBUCH.hol_oder_füg_ein_mit(Standard::standard)
             };
-            dico.insérer(clé, valeur);
+            buch.einfügen(schlüssel, wert);
         }
-        fonction lire(&soi, clé: Chaine) -> PeutÊtre<&Chaine> {
-            soit dico = dangereux {
-                DICTIONNAIRE.prendre_ou_insérer_avec(Défault::défault)
+
+        funktion lies(&selbst, schlüssel: Zeichenkette) -> Ergebnis<&Zeichenkette> {
+            lass buch = unsicher {
+                DICTIONNAIRE.hol_oder_füg_ein_mit(Standard::standard)
             };
-            dico.lire(&clé)
+            buch.lies(&schlüssel)
         }
     }
 
-    public(cagette) fonction peut_etre(i: u32) -> PeutÊtre<Résultat<u32, Chaine>> {
+    public(kiste) funktion peut_etre(i: u32) -> PeutÊtre<Ergebnis<u32, Chaine>> {
         si i % 2 == 1 {
             si i == 42 {
                 Quelque(Arf(Chaine::depuis("merde")))
@@ -39,15 +40,15 @@ rouille::rouille! {
         }
     }
 
-    asynchrone fonction exemple() {
+    asynchrone funktion exemple() {
     }
 
-    asynchrone fonction exemple2() {
-        exemple().attend;
+    asynchrone funktion exemple2() {
+        exemple().warte;
     }
 
-    fonction principale() {
-        soit mutable x = 31;
+    funktion principale() {
+        lass mutable x = 31;
 
         correspond x {
             42 => {
